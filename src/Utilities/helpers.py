@@ -7,9 +7,9 @@ class Helpers:
 
     def get_data():
         site_data = os.getenv('site')
-        if site_data == '4WP-US' or '4WP-CA':
+        if site_data == 'TFQ' or 'TestFrameQA':
             percy_test_file = 'src/tests/test_data/test_data_4wp.csv'
-        elif site_data == '4WD':
+        elif site_data == 'BaseSite':
             percy_test_file = 'src/tests/test_data/test_data_4wd.csv'
         test_file = percy_test_file
         percy_snapshot = 'URL', 'SnapTitle'
