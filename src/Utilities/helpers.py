@@ -29,15 +29,6 @@ class Helpers:
     
     def page_scroller(self):
         sleeptime = 2
-        self.driver.execute_script("window.scrollTo(0, 500);")
-        time.sleep(sleeptime)
-        self.driver.execute_script("window.scrollTo(0, 1500);")
-        time.sleep(sleeptime)
-        self.driver.execute_script("window.scrollTo(0, 2000);")
-        time.sleep(sleeptime)
-        self.driver.execute_script("window.scrollTo(0, 2500);")
-        time.sleep(sleeptime)
-        self.driver.execute_script("window.scrollTo(0, 3000);")
         time.sleep(sleeptime)
         self.driver.execute_script("window.scrollTo(0, document.body.scrollHeight);")
         time.sleep(sleeptime)
