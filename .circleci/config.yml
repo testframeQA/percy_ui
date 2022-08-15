@@ -2,16 +2,16 @@ version: 2.1
 parameters:
   baseurl:
     type: string
-    default: https://wwwuat3.4wheelparts.com
+    default: https://www.testframeqa.com
   auth:
     type: string
-    default: https://uat:uattap123@wwwuat3.4wheelparts.com
+    default: qa.testframe.com
   site:
     type: string
-    default: 4WP-US
+    default: TFQ
   env: 
     type: string
-    default: UAT3
+    default: PROD
 orbs: 
   python: circleci/python@2.0.3
   browser-tools: circleci/browser-tools@1.1
