@@ -1,0 +1,43 @@
+version: 2.1
+parameters:
+  baseurl:
+    type: string
+    default: https://wwwuat3.4wheelparts.com
+  auth:
+    type: string
+    default: https://uat:uattap123@wwwuat3.4wheelparts.com
+  site:
+    type: string
+    default: 4WP-US
+  env: 
+    type: string
+    default: UAT3
+orbs: 
+  python: circleci/python@2.0.3
+  browser-tools: circleci/browser-tools@1.1
+jobs:
+  run_tests:
+    docker: 
+      - image: cimg/python:3.9-browsers
+        environment:
+          PYTHONPATH: /home/circleci/project
+    steps:
+      - checkout
+      - browser-tools/install-chrome
+      - browser-tools/install-chromedriver
+      - run:
+          name: Install Dependencies via requirements.txt file
+          command: |
+            pip install -r requirements.txt
+      - run:
+          name: Install Percy CLI & Run Tests
+          working_directory: /home/circleci/project
+          command: |
+            sudo npm install -g --save-dev @percy/cli
+            sudo chmod -R 777 /usr/local/lib/node_modules/@percy/cli/node_modules/@percy/core/
+            echo 'export PERCY_TOKEN=${PERCY_TOKEN}' >> $BASH_ENV; source $BASH_ENV;
+            percy exec -- pytest src/tests/test_percy_static.py --baseurl=<< pipeline.parameters.baseurl >> --auth=<< pipeline.parameters.auth >> --site=<< pipeline.parameters.site >> --env=<< pipeline.parameters.env >>
+workflows:
+  build_test:
+    jobs:
+      - run_tests
