@@ -11,10 +11,10 @@ def web_driver(request):
     driver.quit()
     
 def pytest_addoption(parser):
-    parser.addoption("--baseurl", action='store', default='https://wwwuat3.4wheelparts.com')
-    parser.addoption("--auth", action='store', default='https://uat:uattap123@wwwuat3.4wheelparts.com')
-    parser.addoption("--site", action='store', default='4WP-US')
-    parser.addoption("--env", action='store', default='UAT3')
+    parser.addoption("--baseurl", action='store', default='www.testframeqa.com')
+    parser.addoption("--auth", action='store', default='qa.testframeqa.com')
+    parser.addoption("--site", action='store', default='TFQ')
+    parser.addoption("--env", action='store', default='STAGING')
     
 def pytest_configure(config):
     os.environ['baseurl'] = config.getoption('baseurl')
